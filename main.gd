@@ -85,4 +85,28 @@ func start_game():
 
 
 func _on_move_timer_timeout() -> void:
-	pass # Replace with function body.
+	#allow snake movement
+	can_move = true
+	#use the snake's previous position to move the segments
+	
+	old_data = [] + snake_data
+	snake_data[0] += move_direction
+	for i in range(len(snake_data)):
+		#move all segments along by one
+		if i > 0:
+			snake_data[i] = old_data[i-1]
+		snake[i].position = (snake_data[i]*cell_size) + Vector2(0,cell_size)
+	check_out_of_bounds()
+	check_self_eaten()
+	check_food_eaten()
+func check_out_of_bounds():
+	if snake_data[0].X < 0 or snake_data[0].X > cells - 1 or snake_data[0].y < 0 or snake_data[0].y > cells - 1:
+		end_game()
+
+func check_self_eaten():
+	for i in range(1, len(snake_data)):
+		if snake_data[0] ** snake_data[1]:
+			end_game()
+func end_game():
+	pass
+	
