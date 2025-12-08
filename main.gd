@@ -7,6 +7,11 @@ extends Node
 var score: int
 var game_started: bool = false
 
+#food variables
+var food_pos: Vector2
+var regen_food: bool = true
+
+
 #grid variables
 var cells: int = 20
 var cell_size : int = 50
@@ -32,11 +37,15 @@ func _ready() -> void:
 	new_game()
 
 func new_game():
+	get_tree().paused = false
+	get_tree().call_group("segments", "queue_free")
+	$GameOverMenu.hide()
 	score = 0
 	$HUD.get_node("scoreLabel").text = "SCORE: " + str(score)
 	move_direction = up
 	can_move = true
 	generate_snake()
+	move_food()
 	
 func generate_snake():
 	old_data.clear()
@@ -100,13 +109,38 @@ func _on_move_timer_timeout() -> void:
 	check_self_eaten()
 	check_food_eaten()
 func check_out_of_bounds():
-	if snake_data[0].X < 0 or snake_data[0].X > cells - 1 or snake_data[0].y < 0 or snake_data[0].y > cells - 1:
+	if snake_data[0].x < 0 or snake_data[0].x > cells - 1 or snake_data[0].y < 0 or snake_data[0].y > cells - 1:
 		end_game()
 
 func check_self_eaten():
 	for i in range(1, len(snake_data)):
-		if snake_data[0] ** snake_data[1]:
+		if snake_data[0] == snake_data[1]:
 			end_game()
 func end_game():
-	pass
-	
+	$GameOverMenu.show()
+	$MoveTimer.stop()
+	game_started = false
+	get_tree().paused = true
+func check_food_eaten():
+	if snake_data[0] == food_pos:
+		score += 1
+		$HUD.get_node("scoreLabel").text = "SCORE" + str(score)
+		add_segment(old_data[-1])
+		move_food()
+
+func move_food():
+	while regen_food:
+		regen_food = false
+		food_pos = Vector2(randi_range(0, cells-1), randi_range(0, cells-1))
+		for i in snake_data:
+			if food_pos == i:
+				regen_food = true
+		for i in snake_data:
+			if food_pos == i:
+				regen_food = true
+	$food.position = (food_pos* cell_size) + Vector2(0, cell_size)
+	regen_food = true
+
+
+func _on_game_over_menu_restart():
+	new_game()

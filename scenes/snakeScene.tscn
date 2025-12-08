@@ -3,7 +3,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orpmj"]
 bg_color = Color(0, 0.889726, 0.0717163, 1)
 
-[node name="snakeSegment" type="Panel"]
+[node name="snakeSegment" type="Panel" groups=["segments"]]
 offset_right = 50.0
 offset_bottom = 50.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_orpmj")

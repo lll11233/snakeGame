@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://byasummwj41s5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndybt"]
+bg_color = Color(0.251336, 0.494562, 0.807069, 1)
+
+[node name="StartMenu" type="CanvasLayer"]
+
+[node name="StartMenuPanel" type="Panel" parent="."]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 950.0
+offset_bottom = 975.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ndybt")
+
+[node name="BeginButton" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="StartButton" type="Label" parent="."]
+offset_left = 110.0
+offset_top = 734.0
+offset_right = 957.0
+offset_bottom = 934.0
+theme_override_font_sizes/font_size = 100
+text = "Press me to start!"
