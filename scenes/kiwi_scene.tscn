@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci5no4minm5vj"]
+
+[ext_resource type="Texture2D" uid="uid://cxdxaj2ktsjmu" path="res://assets/kiwi.png" id="1_5l8um"]
+
+[node name="kiwi_scene" type="Sprite2D"]
+texture = ExtResource("1_5l8um")

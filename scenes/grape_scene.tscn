@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu7tqaggeph30"]
+
+[ext_resource type="Texture2D" uid="uid://dmi5b3mgpqfyk" path="res://assets/grape.png" id="1_j17k6"]
+
+[node name="grape_scene" type="Sprite2D"]
+texture = ExtResource("1_j17k6")

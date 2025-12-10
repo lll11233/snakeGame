@@ -16,6 +16,8 @@ var fruit_scenes = [
 	preload("res://scenes/orange_scene.tscn"),
 	preload("res://scenes/watermelon_scene.tscn"),
 	preload("res://scenes/banana_scene.tscn"),
+	preload("res://scenes/kiwi_scene.tscn"),
+	preload("res://scenes/grape_scene.tscn"),
 ]
 
 var banana_score: int
@@ -129,6 +131,7 @@ func check_self_eaten():
 		if snake_data[0] == snake_data[1]:
 			end_game()
 func end_game():
+	$GameOverMenu.get_node("endResult").text = "SCORE: " + str(score)
 	$GameOverMenu.show()
 	$MoveTimer.stop()
 	game_started = false
