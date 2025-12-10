@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwfkacwleft2g"]
+
+[ext_resource type="Texture2D" uid="uid://l3c2v8seq45p" path="res://assets/orange.png" id="1_m5g8b"]
+
+[node name="OrangeScene" type="Sprite2D"]
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_m5g8b")

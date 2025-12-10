@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxjq1e5xsd5cj"]
+
+[ext_resource type="Texture2D" uid="uid://c4ck22ewcn624" path="res://assets/cherry.png" id="1_y7xag"]
+
+[node name="CherryScene" type="Sprite2D"]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("1_y7xag")

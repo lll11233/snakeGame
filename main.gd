@@ -10,6 +10,15 @@ var game_started: bool = false
 #food variables
 var food_pos: Vector2
 var regen_food: bool = true
+var fruit_scenes = [
+	preload("res://scenes/apple_scene.tscn"),
+	preload("res://scenes/cherry_scene.tscn"),
+	preload("res://scenes/orange_scene.tscn"),
+	preload("res://scenes/watermelon_scene.tscn"),
+	preload("res://scenes/banana_scene.tscn"),
+]
+
+var banana_score: int
 
 
 #grid variables
@@ -34,6 +43,7 @@ var can_move: bool
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$StartMenu.show()
 	new_game()
 
 func new_game():
@@ -41,7 +51,7 @@ func new_game():
 	get_tree().call_group("segments", "queue_free")
 	$GameOverMenu.hide()
 	score = 0
-	$HUD.get_node("scoreLabel").text = "SCORE: " + str(score)
+	$HUD.get_node("scoreLabel").text = "SCORE:  " + str(score)
 	move_direction = up
 	can_move = true
 	generate_snake()
@@ -63,6 +73,8 @@ func add_segment(pos):
 	
 func _process(delta):
 	move_snake()
+	if $AudioStreamPlayer.playing == false:
+		%AudioStreamPlayer.play()
 
 func move_snake():
 	if can_move:
@@ -124,9 +136,15 @@ func end_game():
 func check_food_eaten():
 	if snake_data[0] == food_pos:
 		score += 1
-		$HUD.get_node("scoreLabel").text = "SCORE" + str(score)
+		$HUD.get_node("scoreLabel").text = "SCORE: " + str(score)
 		add_segment(old_data[-1])
 		move_food()
+	if score == 2:
+		$HUD.get_node("scoreLabel").text = "You've eaten your two serves of fruit!"
+	#if img = "banana.png"
+
+
+
 
 func move_food():
 	while regen_food:
@@ -138,9 +156,19 @@ func move_food():
 		for i in snake_data:
 			if food_pos == i:
 				regen_food = true
-	$food.position = (food_pos* cell_size) + Vector2(0, cell_size)
+	var FruitScene = fruit_scenes[randi() % fruit_scenes.size()]
+	var fruit_instance = FruitScene.instantiate()
+	var tex = fruit_instance.texture
+	var img = tex.get_image()
+	img.resize(50, 50) 
+	$food.texture = ImageTexture.create_from_image(img)
+	$food.position = (food_pos * cell_size) + Vector2(0, cell_size)
+
 	regen_food = true
 
 
 func _on_game_over_menu_restart():
 	new_game()
+
+func _on_start_menu_new():
+	$StartMenu.hide()

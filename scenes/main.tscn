@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b85dgxr6p5mo8"]
+[gd_scene load_steps=9 format=3 uid="uid://b85dgxr6p5mo8"]
 
 [ext_resource type="Script" uid="uid://2hvdxga2bokm" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dbv2isccs4way" path="res://scenes/snakeScene.tscn" id="2_h2yge"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://3dm0dft465s1" path="res://scenes/HUD.tscn" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://b2cicg4pqs5tu" path="res://assets/apple.png" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://b14cswtejdej2" path="res://scenes/game_over_menu.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://byasummwj41s5" path="res://scenes/start_menu.tscn" id="7_o6xl0"]
+[ext_resource type="AudioStream" uid="uid://osdte227s11l" path="res://assets/04_Fruit_Salad.wav" id="8_tipki"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
@@ -28,5 +30,12 @@ offset = Vector2(25, 25)
 [node name="GameOverMenu" parent="." instance=ExtResource("6_tefeu")]
 process_mode = 2
 
+[node name="StartMenu" parent="." instance=ExtResource("7_o6xl0")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_tipki")
+autoplay = true
+
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="restart" from="GameOverMenu" to="." method="_on_game_over_menu_restart"]
+[connection signal="new" from="StartMenu" to="." method="_on_start_menu_new"]

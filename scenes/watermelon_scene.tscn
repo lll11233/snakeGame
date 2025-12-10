@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvqxty81vndiw"]
+
+[ext_resource type="Texture2D" uid="uid://ckig2sk33oxm6" path="res://assets/watermelon.png" id="1_h42oi"]
+
+[node name="WatermelonScene" type="Sprite2D"]
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("1_h42oi")

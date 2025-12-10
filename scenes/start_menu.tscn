@@ -1,9 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://byasummwj41s5"]
+[gd_scene load_steps=5 format=3 uid="uid://byasummwj41s5"]
+
+[ext_resource type="Script" uid="uid://b0cmtj7q2k8ka" path="res://scenes/start_menu.gd" id="1_ouf4f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndybt"]
 bg_color = Color(0.251336, 0.494562, 0.807069, 1)
 
+[sub_resource type="Theme" id="Theme_thu50"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7x51"]
+bg_color = Color(0.107495, 0.178562, 0.379157, 1)
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+
 [node name="StartMenu" type="CanvasLayer"]
+script = ExtResource("1_ouf4f")
 
 [node name="StartMenuPanel" type="Panel" parent="."]
 offset_left = 50.0
@@ -13,13 +23,22 @@ offset_bottom = 975.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ndybt")
 
 [node name="BeginButton" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 91.0
+offset_top = 727.0
+offset_right = 931.0
+offset_bottom = 927.0
+theme = SubResource("Theme_thu50")
+theme_override_font_sizes/font_size = 100
+text = "Press Me to start!"
 
 [node name="StartButton" type="Label" parent="."]
-offset_left = 110.0
-offset_top = 734.0
-offset_right = 957.0
-offset_bottom = 934.0
+visible = false
+offset_left = 104.0
+offset_top = 182.0
+offset_right = 951.0
+offset_bottom = 382.0
 theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_m7x51")
 text = "Press me to start!"
+
+[connection signal="pressed" from="BeginButton" to="." method="_on_begin_button_pressed"]

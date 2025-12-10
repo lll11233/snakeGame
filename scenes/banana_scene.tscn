@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bprw7svsh4lou"]
+
+[ext_resource type="Texture2D" uid="uid://b15th0wfah3f5" path="res://assets/banana.png" id="1_mtm2n"]
+
+[node name="BananaScene" type="Sprite2D"]
+scale = Vector2(0.046, 0.046)
+texture = ExtResource("1_mtm2n")
