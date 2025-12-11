@@ -18,13 +18,13 @@ var fruit_scenes = [
 	preload("res://scenes/banana_scene.tscn"),
 	preload("res://scenes/kiwi_scene.tscn"),
 	preload("res://scenes/grape_scene.tscn"),
-	preload("res://scenes/strawberry_scene.tscn")
+	preload("res://scenes/strawberry_scene.tscn"),
 ]
 
 #var banana = "res://scenes/banana_scene.tscn"
 
 var banana_score: int
-
+var banana_item = fruit_scenes[4]
 
 #grid variables
 var cells: int = 20
@@ -142,7 +142,7 @@ func end_game():
 	game_started = false
 	get_tree().paused = true
 func check_food_eaten():
-	if fruit_scenes[4]:
+	if banana_item:
 		banana_score += 1
 	if snake_data[0] == food_pos:
 		score += 1
