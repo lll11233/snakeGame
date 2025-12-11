@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6r3po101ao6o"]
+
+[ext_resource type="Texture2D" uid="uid://nclga7e1d2t5" path="res://assets/strawberry.png" id="1_vwqvv"]
+
+[node name="strawberry_scene" type="Sprite2D"]
+texture = ExtResource("1_vwqvv")

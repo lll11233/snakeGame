@@ -16,28 +16,33 @@ expand_margin_right = 15.0
 script = ExtResource("1_ouf4f")
 
 [node name="StartMenuPanel" type="Panel" parent="."]
-offset_left = 50.0
-offset_top = 50.0
-offset_right = 950.0
-offset_bottom = 975.0
+anchors_preset = -1
+anchor_left = 0.359
+anchor_top = 0.41
+anchor_right = 0.359
+anchor_bottom = 0.41
+offset_left = -217.0
+offset_top = -280.5
+offset_right = 683.0
+offset_bottom = 644.5
 scale = Vector2(0.75, 0.75)
 theme_override_styles/panel = SubResource("StyleBoxFlat_ndybt")
 
 [node name="BeginButton" type="Button" parent="."]
-offset_left = 66.0
-offset_top = 550.0
-offset_right = 918.0
-offset_bottom = 725.0
+offset_left = 158.0
+offset_top = 650.0
+offset_right = 1010.0
+offset_bottom = 825.0
 scale = Vector2(0.75, 0.75)
 theme = SubResource("Theme_thu50")
 theme_override_font_sizes/font_size = 100
 text = "Press Me to start!"
 
 [node name="StartButton" type="Label" parent="."]
-offset_left = 74.0
-offset_top = 182.0
-offset_right = 921.0
-offset_bottom = 382.0
+offset_left = 166.0
+offset_top = 282.0
+offset_right = 1013.0
+offset_bottom = 482.0
 scale = Vector2(0.75, 0.75)
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_m7x51")

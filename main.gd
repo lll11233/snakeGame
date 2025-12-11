@@ -18,7 +18,10 @@ var fruit_scenes = [
 	preload("res://scenes/banana_scene.tscn"),
 	preload("res://scenes/kiwi_scene.tscn"),
 	preload("res://scenes/grape_scene.tscn"),
+	preload("res://scenes/strawberry_scene.tscn")
 ]
+
+#var banana = "res://scenes/banana_scene.tscn"
 
 var banana_score: int
 
@@ -53,6 +56,7 @@ func new_game():
 	get_tree().call_group("segments", "queue_free")
 	$GameOverMenu.hide()
 	score = 0
+	banana_score = 0 ## this is interesting, scores don't align
 	$HUD.get_node("scoreLabel").text = "SCORE:  " + str(score)
 	move_direction = up
 	can_move = true
@@ -132,11 +136,14 @@ func check_self_eaten():
 			end_game()
 func end_game():
 	$GameOverMenu.get_node("endResult").text = "SCORE: " + str(score)
+	$GameOverMenu.get_node("bananaResult").text = "BANANA SCORE: " + str(banana_score)
 	$GameOverMenu.show()
 	$MoveTimer.stop()
 	game_started = false
 	get_tree().paused = true
 func check_food_eaten():
+	if fruit_scenes[4]:
+		banana_score += 1
 	if snake_data[0] == food_pos:
 		score += 1
 		$HUD.get_node("scoreLabel").text = "SCORE: " + str(score)
@@ -144,7 +151,9 @@ func check_food_eaten():
 		move_food()
 	if score == 2:
 		$HUD.get_node("scoreLabel").text = "You've eaten your two serves of fruit!"
-	#if img = "banana.png"
+	if banana_score == 50:
+		$HUD.get_node("scoreLabel").text = "You've eaten 50 bananas resulting which is dental x-ray dose of radiation!"
+
 
 
 

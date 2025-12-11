@@ -41,15 +41,28 @@ text = "Play Again"
 
 [node name="endResult" type="Label" parent="."]
 anchors_preset = -1
-anchor_left = 0.445
-anchor_top = 0.443
-anchor_right = 0.445
-anchor_bottom = 0.443
-offset_left = -111.0
-offset_top = -11.15
-offset_right = 249.0
-offset_bottom = 31.85
-theme_override_font_sizes/font_size = 30
+anchor_left = 0.5
+anchor_top = 0.406
+anchor_right = 0.5
+anchor_bottom = 0.406
+offset_left = -163.0
+offset_top = -12.3
+offset_right = 197.0
+offset_bottom = 30.7
+theme_override_font_sizes/font_size = 28
 text = "Score: "
+
+[node name="bananaResult" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.375
+anchor_top = 0.456
+anchor_right = 0.375
+anchor_bottom = 0.456
+offset_left = -39.0
+offset_top = -11.8
+offset_right = 63.0
+offset_bottom = 11.2
+theme_override_font_sizes/font_size = 28
+text = "Banana score: "
 
 [connection signal="pressed" from="restartButton" to="." method="_on_restart_button_pressed"]
