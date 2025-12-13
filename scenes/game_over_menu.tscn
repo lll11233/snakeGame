@@ -4,6 +4,10 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg6a4"]
 bg_color = Color(0.109567, 0.265346, 0.537518, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="Theme" id="Theme_14ib6"]
 

@@ -19,6 +19,7 @@ var fruit_scenes = [
 	preload("res://scenes/kiwi_scene.tscn"),
 	preload("res://scenes/grape_scene.tscn"),
 	preload("res://scenes/strawberry_scene.tscn"),
+	preload("res://scenes/mango_scene.tscn"),
 ]
 
 #var banana = "res://scenes/banana_scene.tscn"
@@ -79,8 +80,8 @@ func add_segment(pos):
 	
 func _process(delta):
 	move_snake()
-	if $AudioStreamPlayer.playing == false:
-		%AudioStreamPlayer.play()
+	if $backgroundTheme.playing == false:
+		$backgroundTheme.play()
 
 func move_snake():
 	if can_move:
@@ -133,6 +134,7 @@ func check_out_of_bounds():
 func check_self_eaten():
 	for i in range(1, len(snake_data)):
 		if snake_data[0] == snake_data[1]:
+			#shake()
 			end_game()
 func end_game():
 	$GameOverMenu.get_node("endResult").text = "SCORE: " + str(score)
@@ -141,22 +143,22 @@ func end_game():
 	$MoveTimer.stop()
 	game_started = false
 	get_tree().paused = true
-func check_food_eaten():
-	if banana_item:
-		banana_score += 1
-	if snake_data[0] == food_pos:
-		score += 1
-		$HUD.get_node("scoreLabel").text = "SCORE: " + str(score)
-		add_segment(old_data[-1])
-		move_food()
-	if score == 2:
-		$HUD.get_node("scoreLabel").text = "You've eaten your two serves of fruit!"
-	if banana_score == 50:
-		$HUD.get_node("scoreLabel").text = "You've eaten 50 bananas resulting which is dental x-ray dose of radiation!"
 
-
-
-
+#var shake_strength = 5
+#var shake_time = 0.2
+#
+#func shake():
+	#var tween = create_tween()
+	#for i in 10:
+		#tween.tween_property(self, "offset", Vector2(randf()*shake_strength, randf()*shake_strength), shake_time/10 )
+	#tween.tween_property(self, "offset", Vector2.ZERO, shake_time/10)
+	#
+	
+	#var t = create_tween()
+	#t.tween_property(self,"scale", Vector2(1.5, 1.5), 0.1)
+	#t.tween_property(self,"modulate:a", 0.0,0.1)
+	#await t.finished
+	#queue_free()
 
 func move_food():
 	while regen_food:
@@ -177,6 +179,24 @@ func move_food():
 	$food.position = (food_pos * cell_size) + Vector2(0, cell_size)
 
 	regen_food = true
+
+
+
+
+func check_food_eaten():
+	#if $food.texture == ImageTexture("res://assets/banana.png"):
+		#banana_score += 1 ## banana score still doenst work
+	if snake_data[0] == food_pos:
+		$soundEffect.play()
+		score += 1
+		$HUD.get_node("scoreLabel").text = "SCORE: " + str(score)
+		add_segment(old_data[-1])
+		move_food()
+	if score == 2:
+		$HUD.get_node("scoreLabel").text = "You've eaten your two serves of fruit!"
+	if banana_score == 50:
+		$HUD.get_node("scoreLabel").text = "You've eaten 50 bananas resulting which is dental x-ray dose of radiation!"
+
 
 
 func _on_game_over_menu_restart():
