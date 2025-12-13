@@ -19,6 +19,6 @@ offset_right = 994.0
 offset_bottom = 62.0
 theme_override_colors/font_color = Color(0.857325, 0.899607, 1, 1)
 theme_override_fonts/font = ExtResource("1_k5de2")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 56
 text = "Score:     "
 horizontal_alignment = 1

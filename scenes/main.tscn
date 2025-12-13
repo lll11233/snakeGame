@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b85dgxr6p5mo8"]
+[gd_scene load_steps=13 format=3 uid="uid://b85dgxr6p5mo8"]
 
 [ext_resource type="Script" uid="uid://2hvdxga2bokm" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dbv2isccs4way" path="res://scenes/snakeScene.tscn" id="2_h2yge"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://osdte227s11l" path="res://assets/04_Fruit_Salad.wav" id="8_tipki"]
 [ext_resource type="AudioStream" uid="uid://c6qqwv851i6m7" path="res://assets/crunch.mp3" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://bn3v7txbrfy8x" path="res://scenes/camera_2d.gd" id="10_choun"]
+[ext_resource type="AudioStream" uid="uid://dwrkg0u3f2ls5" path="res://assets/gameOverSound.mp3" id="11_ya4ey"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_85g3d"]
 
@@ -52,6 +53,7 @@ process_mode = 2
 stream = ExtResource("8_tipki")
 volume_db = -7.924
 autoplay = true
+mix_target = 1
 
 [node name="soundEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_85g3d")
@@ -60,10 +62,15 @@ mix_target = 2
 max_polyphony = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(506, 523)
+position = Vector2(500, 524)
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 script = ExtResource("10_choun")
+
+[node name="endSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ya4ey")
+volume_db = 1.0
+mix_target = 2
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="restart" from="GameOverMenu" to="." method="_on_game_over_menu_restart"]

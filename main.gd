@@ -1,7 +1,7 @@
 extends Node
 
 @export var snakeScene : PackedScene
-
+@onready var camera_view = get_node("Camera2D")
 
 #game variables
 var score: int
@@ -24,8 +24,8 @@ var fruit_scenes = [
 
 #var banana = "res://scenes/banana_scene.tscn"
 
-var banana_score: int
-var banana_item = fruit_scenes[4]
+#var banana_score: int
+#var banana_item = fruit_scenes[4]
 
 #grid variables
 var cells: int = 20
@@ -53,11 +53,12 @@ func _ready() -> void:
 	new_game()
 
 func new_game():
+	backgroundRight == true
 	get_tree().paused = false
 	get_tree().call_group("segments", "queue_free")
 	$GameOverMenu.hide()
 	score = 0
-	banana_score = 0 ## this is interesting, scores don't align
+	#banana_score = 0 ## this is interesting, scores don't align
 	$HUD.get_node("scoreLabel").text = "SCORE:  " + str(score)
 	move_direction = up
 	can_move = true
@@ -78,14 +79,16 @@ func add_segment(pos):
 	add_child(SnakeSegment)
 	snake.append(SnakeSegment)
 	
+var backgroundRight: bool
 func _process(delta):
 	move_snake()
-	if $backgroundTheme.playing == false:
+	if $backgroundTheme.playing == false :
 		$backgroundTheme.play()
+	#el:
+		#$backgroundTheme.stop()
 
 func move_snake():
 	if can_move:
-		
 		if Input.is_action_just_pressed("move_down") and move_direction != up:
 			move_direction = down
 			can_move = false
@@ -116,7 +119,6 @@ func _on_move_timer_timeout() -> void:
 	#allow snake movement
 	can_move = true
 	#use the snake's previous position to move the segments
-	
 	old_data = [] + snake_data
 	snake_data[0] += move_direction
 	for i in range(len(snake_data)):
@@ -134,31 +136,21 @@ func check_out_of_bounds():
 func check_self_eaten():
 	for i in range(1, len(snake_data)):
 		if snake_data[0] == snake_data[1]:
-			#shake()
 			end_game()
 func end_game():
-	$GameOverMenu.get_node("endResult").text = "SCORE: " + str(score)
-	$GameOverMenu.get_node("bananaResult").text = "BANANA SCORE: " + str(banana_score)
-	$GameOverMenu.show()
+	backgroundRight == false
+	$endSound.play()
+	camera_view.apply_shake()
 	$MoveTimer.stop()
+	await get_tree().create_timer(1).timeout
+	$GameOverMenu.get_node("endResult").text = "SCORE: " + str(score)
+	#$GameOverMenu.get_node("bananaResult").text = "BANANA SCORE: " + str(banana_score)
+	$GameOverMenu.show()
 	game_started = false
 	get_tree().paused = true
 
-#var shake_strength = 5
-#var shake_time = 0.2
-#
-#func shake():
-	#var tween = create_tween()
-	#for i in 10:
-		#tween.tween_property(self, "offset", Vector2(randf()*shake_strength, randf()*shake_strength), shake_time/10 )
-	#tween.tween_property(self, "offset", Vector2.ZERO, shake_time/10)
-	#
-	
-	#var t = create_tween()
-	#t.tween_property(self,"scale", Vector2(1.5, 1.5), 0.1)
-	#t.tween_property(self,"modulate:a", 0.0,0.1)
-	#await t.finished
-	#queue_free()
+
+
 
 func move_food():
 	while regen_food:
@@ -192,12 +184,14 @@ func check_food_eaten():
 		$HUD.get_node("scoreLabel").text = "SCORE: " + str(score)
 		add_segment(old_data[-1])
 		move_food()
+	#if snake_data[0] == food_pos and FruitScene[4]:
+		#banana_score += 1
 	if score == 2:
 		$HUD.get_node("scoreLabel").text = "You've eaten your two serves of fruit!"
-	if banana_score == 50:
-		$HUD.get_node("scoreLabel").text = "You've eaten 50 bananas resulting which is dental x-ray dose of radiation!"
-
-
+	#if banana_score == 50:
+		#$HUD.get_node("scoreLabel").text = "You've eaten 50 bananas resulting which is dental x-ray dose of radiation!"
+#
+#
 
 func _on_game_over_menu_restart():
 	new_game()
