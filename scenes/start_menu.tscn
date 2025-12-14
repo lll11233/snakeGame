@@ -25,35 +25,46 @@ script = ExtResource("1_ouf4f")
 
 [node name="StartMenuPanel" type="Panel" parent="."]
 anchors_preset = -1
-anchor_left = 0.359
-anchor_top = 0.41
-anchor_right = 0.359
-anchor_bottom = 0.41
-offset_left = -217.0
-offset_top = -280.5
-offset_right = 683.0
-offset_bottom = 644.5
-scale = Vector2(0.75, 0.75)
+anchor_left = 0.05
+anchor_top = 0.0595238
+anchor_right = 0.95
+anchor_bottom = 0.940476
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ndybt")
+metadata/_edit_use_anchors_ = true
 
 [node name="BeginButton" type="Button" parent="."]
-offset_left = 158.0
-offset_top = 650.0
-offset_right = 1010.0
-offset_bottom = 825.0
-scale = Vector2(0.75, 0.75)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -426.0
+offset_top = -295.0
+offset_right = 426.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 0
 theme = SubResource("Theme_thu50")
 theme_override_font_sizes/font_size = 100
 text = "Press Me to start!"
+metadata/_edit_use_anchors_ = true
 
 [node name="StartButton" type="Label" parent="."]
-offset_left = 166.0
-offset_top = 282.0
-offset_right = 997.0
-offset_bottom = 443.0
-scale = Vector2(0.75, 0.75)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.201
+anchor_right = 0.5
+anchor_bottom = 0.201
+offset_left = -422.0
+offset_top = -80.05
+offset_right = 409.0
+offset_bottom = 80.95
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_m7x51")
 text = "Fruit Salad Snake"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="BeginButton" to="." method="_on_begin_button_pressed"]

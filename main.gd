@@ -53,7 +53,6 @@ func _ready() -> void:
 	new_game()
 
 func new_game():
-	backgroundRight == true
 	get_tree().paused = false
 	get_tree().call_group("segments", "queue_free")
 	$GameOverMenu.hide()
@@ -79,7 +78,6 @@ func add_segment(pos):
 	add_child(SnakeSegment)
 	snake.append(SnakeSegment)
 	
-var backgroundRight: bool
 func _process(delta):
 	move_snake()
 	if $backgroundTheme.playing == false :
@@ -138,7 +136,6 @@ func check_self_eaten():
 		if snake_data[0] == snake_data[1]:
 			end_game()
 func end_game():
-	backgroundRight == false
 	$endSound.play()
 	camera_view.apply_shake()
 	$MoveTimer.stop()

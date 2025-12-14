@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b85dgxr6p5mo8"]
+[gd_scene load_steps=12 format=3 uid="uid://b85dgxr6p5mo8"]
 
 [ext_resource type="Script" uid="uid://2hvdxga2bokm" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dbv2isccs4way" path="res://scenes/snakeScene.tscn" id="2_h2yge"]
@@ -12,23 +12,9 @@
 [ext_resource type="Script" uid="uid://bn3v7txbrfy8x" path="res://scenes/camera_2d.gd" id="10_choun"]
 [ext_resource type="AudioStream" uid="uid://dwrkg0u3f2ls5" path="res://assets/gameOverSound.mp3" id="11_ya4ey"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_85g3d"]
-
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
 snakeScene = ExtResource("2_h2yge")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = -1
-anchor_left = 0.506
-anchor_top = 0.5
-anchor_right = 0.506
-anchor_bottom = 0.5
-offset_left = -550.0
-offset_top = -569.0
-offset_right = 550.0
-offset_bottom = 581.0
-texture = SubResource("CanvasTexture_85g3d")
 
 [node name="background" type="Sprite2D" parent="."]
 position = Vector2(500, 500)
@@ -51,7 +37,7 @@ process_mode = 2
 
 [node name="backgroundTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_tipki")
-volume_db = -7.924
+volume_db = -13.031
 autoplay = true
 mix_target = 1
 
@@ -62,7 +48,7 @@ mix_target = 2
 max_polyphony = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(500, 524)
+position = Vector2(500, 525)
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 script = ExtResource("10_choun")

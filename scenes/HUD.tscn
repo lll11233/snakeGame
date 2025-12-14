@@ -8,17 +8,24 @@ bg_color = Color(0, 0.459615, 0.835096, 1)
 [node name="HUD" type="CanvasLayer"]
 
 [node name="scorePanel" type="Panel" parent="."]
-offset_right = 1000.0
-offset_bottom = 50.0
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.047619
 theme_override_styles/panel = SubResource("StyleBoxFlat_efote")
+metadata/_edit_use_anchors_ = true
 
 [node name="scoreLabel" type="Label" parent="."]
-offset_left = 10.0
-offset_top = -14.0
-offset_right = 994.0
-offset_bottom = 62.0
+anchors_preset = -1
+anchor_left = -0.003
+anchor_top = -0.0133333
+anchor_right = 0.994
+anchor_bottom = 0.0661905
+offset_right = 997.0
+offset_bottom = 67.5
+scale = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.857325, 0.899607, 1, 1)
 theme_override_fonts/font = ExtResource("1_k5de2")
-theme_override_font_sizes/font_size = 56
+theme_override_font_sizes/font_size = 100
 text = "Score:     "
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
