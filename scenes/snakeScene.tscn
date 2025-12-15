@@ -7,5 +7,6 @@ bg_color = Color(0, 0.889726, 0.0717163, 1)
 anchors_preset = -1
 anchor_right = 0.05
 anchor_bottom = 0.047619
+offset_bottom = 4.95911e-05
 theme_override_styles/panel = SubResource("StyleBoxFlat_orpmj")
 metadata/_edit_use_anchors_ = true
