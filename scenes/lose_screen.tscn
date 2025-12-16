@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl80ldr3105oi"]
+
+[ext_resource type="Texture2D" uid="uid://bujwv4h5wekqd" path="res://assets/bowl_2.png" id="1_uglf1"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_uglf1"]
+
+[node name="lose_screen" type="Node"]
+
+[node name="background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("CanvasTexture_uglf1")
+metadata/_edit_use_anchors_ = true
+
+[node name="bowl" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_left = -0.003
+anchor_top = 0.0533333
+anchor_right = 0.997
+anchor_bottom = 1.00571
+offset_right = -500.0
+offset_bottom = -500.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_uglf1")
+metadata/_edit_use_anchors_ = true
+
+[node name="FruitContainer" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.302
+anchor_top = 0.474286
+anchor_right = 0.736
+anchor_bottom = 0.728571
+metadata/_edit_use_anchors_ = true
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = -1
+anchor_top = 0.865714
+anchor_right = 1.004
+anchor_bottom = 0.967619
+offset_right = 6.10352e-05
+offset_bottom = -16.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "Score: "
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true

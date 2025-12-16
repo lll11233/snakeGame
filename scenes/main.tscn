@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://b85dgxr6p5mo8"]
 
-[ext_resource type="Script" uid="uid://2hvdxga2bokm" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://2hvdxga2bokm" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dbv2isccs4way" path="res://scenes/snakeScene.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://bv07t4j6sa5hh" path="res://assets/bg.png" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://3dm0dft465s1" path="res://scenes/HUD.tscn" id="4_1bvp3"]
@@ -33,10 +33,8 @@ offset = Vector2(25, 25)
 
 [node name="GameOverMenu" parent="." instance=ExtResource("6_tefeu")]
 process_mode = 2
-visible = false
 
 [node name="StartMenu" parent="." instance=ExtResource("7_o6xl0")]
-visible = false
 
 [node name="backgroundTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_tipki")

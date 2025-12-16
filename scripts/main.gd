@@ -3,7 +3,9 @@ extends Node
 @export var snakeScene : PackedScene
 @onready var camera_view = get_node("Camera2D")
 
-#game variables
+
+
+#game 
 var score: int
 var game_started: bool = false
 
@@ -56,6 +58,7 @@ func new_game():
 	get_tree().paused = false
 	get_tree().call_group("segments", "queue_free")
 	$GameOverMenu.hide()
+	$lose_screen.hide()
 	score = 0
 	#banana_score = 0 ## this is interesting, scores don't align
 	$HUD.get_node("scoreLabel").text = "SCORE:  " + str(score)
@@ -140,6 +143,13 @@ func end_game():
 	camera_view.apply_shake()
 	$MoveTimer.stop()
 	await get_tree().create_timer(1).timeout
+	var lose_screen_ui = preload("res://scenes/game_over_menu.tscn").instantiate()
+	get_tree().root.add_child(lose_screen_ui)
+	lose_screen_ui.show_results(score)
+
+	
+	
+	await get_tree().create_timer(5).timeout
 	$GameOverMenu.get_node("endResult").text = "SCORE: " + str(score)
 	#$GameOverMenu.get_node("bananaResult").text = "BANANA SCORE: " + str(banana_score)
 	$GameOverMenu.show()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b14cswtejdej2"]
 
-[ext_resource type="Script" uid="uid://db6wv4l6pk6se" path="res://game_over_menu.gd" id="1_6ebp1"]
+[ext_resource type="Script" uid="uid://db6wv4l6pk6se" path="res://scripts/game_over_menu.gd" id="1_6ebp1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg6a4"]
 bg_color = Color(0.109567, 0.265346, 0.537518, 1)
@@ -39,11 +39,10 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = -1
 anchor_left = 0.344
 anchor_top = 0.45619
-anchor_right = 0.644
-anchor_bottom = 0.546666
-offset_bottom = -14.9992
+anchor_right = 0.662
+anchor_bottom = 0.501904
 theme = SubResource("Theme_14ib6")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 20
 text = "Play Again"
 metadata/_edit_use_anchors_ = true
 

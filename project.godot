@@ -14,6 +14,10 @@ config/name="platformerSnakeGame"
 run/main_scene="uid://b85dgxr6p5mo8"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
+[autoload]
+
+Main="*res://scripts/main.gd"
+
 [display]
 
 window/size/viewport_width=1000
