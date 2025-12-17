@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b85dgxr6p5mo8"]
+[gd_scene load_steps=13 format=3 uid="uid://r8dbyc1eieg7"]
 
 [ext_resource type="Script" uid="uid://2hvdxga2bokm" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dbv2isccs4way" path="res://scenes/snakeScene.tscn" id="2_h2yge"]
@@ -11,8 +11,9 @@
 [ext_resource type="AudioStream" uid="uid://c6qqwv851i6m7" path="res://assets/crunch.mp3" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://bn3v7txbrfy8x" path="res://scenes/camera_2d.gd" id="10_choun"]
 [ext_resource type="AudioStream" uid="uid://dwrkg0u3f2ls5" path="res://assets/gameOverSound.mp3" id="11_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://bl80ldr3105oi" path="res://scenes/lose_screen.tscn" id="12_eb6dy"]
 
-[node name="Main" type="Node"]
+[node name="_Node_2" type="Node"]
 script = ExtResource("1_ig7tw")
 snakeScene = ExtResource("2_h2yge")
 
@@ -31,11 +32,6 @@ wait_time = 0.1
 texture = ExtResource("5_lquwl")
 offset = Vector2(25, 25)
 
-[node name="GameOverMenu" parent="." instance=ExtResource("6_tefeu")]
-process_mode = 2
-
-[node name="StartMenu" parent="." instance=ExtResource("7_o6xl0")]
-
 [node name="backgroundTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_tipki")
 volume_db = -13.031
@@ -48,16 +44,23 @@ volume_db = 12.648
 mix_target = 2
 max_polyphony = 2
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="endSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ya4ey")
+volume_db = 1.0
+mix_target = 2
+
+[node name="GameOverMenu" parent="." instance=ExtResource("6_tefeu")]
+process_mode = 2
+
+[node name="CameraView" type="Camera2D" parent="."]
 position = Vector2(500, 525)
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 script = ExtResource("10_choun")
 
-[node name="endSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_ya4ey")
-volume_db = 1.0
-mix_target = 2
+[node name="StartMenu" parent="." instance=ExtResource("7_o6xl0")]
+
+[node name="lose_screen" parent="." instance=ExtResource("12_eb6dy")]
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="restart" from="GameOverMenu" to="." method="_on_game_over_menu_restart"]

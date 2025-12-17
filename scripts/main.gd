@@ -1,7 +1,11 @@
 extends Node
 
 @export var snakeScene : PackedScene
-@onready var camera_view = get_node("Camera2D")
+@export var CameraView: PackedScene
+@export var StartMenu: PackedScene
+@export var GameOverMenu: PackedScene
+@export var lose_screen: PackedScene
+@export var HUD: PackedScene
 
 
 
@@ -51,17 +55,26 @@ var can_move: bool
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$StartMenu.show()
-	new_game()
+	#StartMenu.show()
+	var start = get_tree().get_root().get_node("_Node_2/StartMenu")
+	start.show()
+	new_game() 
+	## startmenu still doesnt show, why?
+
+
 
 func new_game():
 	get_tree().paused = false
 	get_tree().call_group("segments", "queue_free")
-	$GameOverMenu.hide()
-	$lose_screen.hide()
+	var GameOver = get_tree().get_root().get_node("_Node_2/GameOverMenu")
+	GameOver.hide()
+	#var lose_screen = get_tree().get_root().get_node("_Node_2/lose_screen")
+	#lose_screen.hide()
 	score = 0
 	#banana_score = 0 ## this is interesting, scores don't align
-	$HUD.get_node("scoreLabel").text = "SCORE:  " + str(score)
+	var scorelabel = get_tree().get_root().get_node("_Node_2/HUD/scoreLabel")
+	scorelabel = "SCORE:  " + str(score)
+	
 	move_direction = up
 	can_move = true
 	generate_snake()
@@ -76,15 +89,17 @@ func generate_snake():
 		add_segment(start_pos + Vector2(0,i))
 func add_segment(pos):
 	snake_data.append(pos)
-	var SnakeSegment = snakeScene.instantiate()
+	var snakePart = preload("res://scenes/snakeScene.tscn")
+	var SnakeSegment = snakePart.instantiate()
 	SnakeSegment.position = (pos*cell_size) + Vector2(0, cell_size)
 	add_child(SnakeSegment)
 	snake.append(SnakeSegment)
 	
-func _process(delta):
+func _process(_delta):
 	move_snake()
-	if $backgroundTheme.playing == false :
-		$backgroundTheme.play()
+	var backgroundTheme = get_tree().get_root().get_node("_Node_2/backgroundTheme")
+	if backgroundTheme.playing == false :
+		backgroundTheme.play()
 	#el:
 		#$backgroundTheme.stop()
 
@@ -112,7 +127,9 @@ func move_snake():
 				start_game()
 func start_game():
 	game_started = true
-	$MoveTimer.start()
+	var moveTimer = get_tree().get_root().get_node("_Node_2/MoveTimer")
+	moveTimer.start()
+	
 			 
 
 
@@ -140,7 +157,7 @@ func check_self_eaten():
 			end_game()
 func end_game():
 	$endSound.play()
-	camera_view.apply_shake()
+	CameraView.apply_shake()
 	$MoveTimer.stop()
 	await get_tree().create_timer(1).timeout
 	var lose_screen_ui = preload("res://scenes/game_over_menu.tscn").instantiate()
@@ -174,8 +191,9 @@ func move_food():
 	var tex = fruit_instance.texture
 	var img = tex.get_image()
 	img.resize(50, 50) 
-	$food.texture = ImageTexture.create_from_image(img)
-	$food.position = (food_pos * cell_size) + Vector2(0, cell_size)
+	var food = get_tree().get_root().get_node("_Node_2/food")
+	food.texture = ImageTexture.create_from_image(img)
+	food.position = (food_pos * cell_size) + Vector2(0, cell_size)
 
 	regen_food = true
 
@@ -188,13 +206,15 @@ func check_food_eaten():
 	if snake_data[0] == food_pos:
 		$soundEffect.play()
 		score += 1
-		$HUD.get_node("scoreLabel").text = "SCORE: " + str(score)
+		var scorelabel = get_tree().get_root().get_node("_Node_2/HUD/scoreLabel")
+		scorelabel = "SCORE:  " + str(score)
 		add_segment(old_data[-1])
 		move_food()
 	#if snake_data[0] == food_pos and FruitScene[4]:
 		#banana_score += 1
 	if score == 2:
-		$HUD.get_node("scoreLabel").text = "You've eaten your two serves of fruit!"
+		var scorelabel = get_tree().get_root().get_node("_Node_2/HUD/scoreLabel")
+		scorelabel = "You've eaten your two serves of fruit!"
 	#if banana_score == 50:
 		#$HUD.get_node("scoreLabel").text = "You've eaten 50 bananas resulting which is dental x-ray dose of radiation!"
 #
