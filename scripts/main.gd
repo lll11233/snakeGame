@@ -1,10 +1,10 @@
 extends Node
 
 @export var snakeScene : PackedScene
-@export var CameraView: PackedScene
+#@export var CameraView: PackedScene
 @export var StartMenu: PackedScene
 @export var GameOverMenu: PackedScene
-@export var lose_screen: PackedScene
+#@export var lose_screen: PackedScene
 @export var HUD: PackedScene
 
 
@@ -68,12 +68,18 @@ func new_game():
 	get_tree().call_group("segments", "queue_free")
 	var GameOver = get_tree().get_root().get_node("_Node_2/GameOverMenu")
 	GameOver.hide()
-	#var lose_screen = get_tree().get_root().get_node("_Node_2/lose_screen")
+	var lose_screen = get_tree().get_root().get_node("_Node_2/lose_screen")
 	#lose_screen.hide()
+	lose_screen.queue_free()
+	#lose_screen = null
+	#if lose_screen:
+		#lose_screen.queue_free()
+		#lose_screen = null
+
 	score = 0
 	#banana_score = 0 ## this is interesting, scores don't align
 	var scorelabel = get_tree().get_root().get_node("_Node_2/HUD/scoreLabel")
-	scorelabel = "SCORE:  " + str(score)
+	scorelabel.text = "SCORE:  " + str(score)
 	
 	move_direction = up
 	can_move = true
@@ -100,8 +106,7 @@ func _process(_delta):
 	var backgroundTheme = get_tree().get_root().get_node("_Node_2/backgroundTheme")
 	if backgroundTheme.playing == false :
 		backgroundTheme.play()
-	#el:
-		#$backgroundTheme.stop()
+
 
 func move_snake():
 	if can_move:
@@ -157,12 +162,19 @@ func check_self_eaten():
 			end_game()
 func end_game():
 	$endSound.play()
+	var CameraView = get_tree().get_root().get_node("_Node_2/CameraView")
 	CameraView.apply_shake()
 	$MoveTimer.stop()
 	await get_tree().create_timer(1).timeout
-	var lose_screen_ui = preload("res://scenes/game_over_menu.tscn").instantiate()
+	#lose_screen_ui.show_results(score)
+	var lose_screen_scene = preload("res://scenes/lose_screen.tscn")
+	var lose_screen_ui = lose_screen_scene.instantiate()
 	get_tree().root.add_child(lose_screen_ui)
+	print("Script on lose_screen_ui:", lose_screen_ui.get_script())
+
 	lose_screen_ui.show_results(score)
+	## this still aint working!!!!! 
+
 
 	
 	
@@ -207,14 +219,14 @@ func check_food_eaten():
 		$soundEffect.play()
 		score += 1
 		var scorelabel = get_tree().get_root().get_node("_Node_2/HUD/scoreLabel")
-		scorelabel = "SCORE:  " + str(score)
+		scorelabel.text = "SCORE:  " + str(score)
 		add_segment(old_data[-1])
 		move_food()
 	#if snake_data[0] == food_pos and FruitScene[4]:
 		#banana_score += 1
 	if score == 2:
 		var scorelabel = get_tree().get_root().get_node("_Node_2/HUD/scoreLabel")
-		scorelabel = "You've eaten your two serves of fruit!"
+		scorelabel.text = "You've eaten your two serves of fruit!"
 	#if banana_score == 50:
 		#$HUD.get_node("scoreLabel").text = "You've eaten 50 bananas resulting which is dental x-ray dose of radiation!"
 #

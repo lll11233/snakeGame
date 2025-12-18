@@ -2,7 +2,5 @@
 
 [ext_resource type="Texture2D" uid="uid://b2cicg4pqs5tu" path="res://assets/apple.png" id="1_wwoba"]
 
-[node name="fruitIcon" type="TextureRect"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="fruitIcon" type="Sprite2D"]
 texture = ExtResource("1_wwoba")
