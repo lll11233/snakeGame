@@ -58,8 +58,10 @@ func _ready() -> void:
 	#StartMenu.show()
 	var start = get_tree().get_root().get_node("_Node_2/StartMenu")
 	start.show()
+	var lose_screen_scene = get_tree().get_root().get_node("_Node_2/lose_screen")
+	lose_screen_scene.queue_free()
 	new_game() 
-	## startmenu still doesnt show, why?
+	
 
 
 
@@ -68,13 +70,14 @@ func new_game():
 	get_tree().call_group("segments", "queue_free")
 	var GameOver = get_tree().get_root().get_node("_Node_2/GameOverMenu")
 	GameOver.hide()
-	var lose_screen = get_tree().get_root().get_node("/root/_Node_2/lose_screen")
-	#lose_screen.hide()
-	lose_screen.queue_free()
-	#lose_screen = null
-	#if lose_screen:
+	#var lose_screen_scene = get_tree().get_root().get_node("/_Node_2/lose_screen")
+	#lose_screen_scene.queue_free()
+	###lose_screen.hide()
+	#if lose_screen.show():
 		#lose_screen.queue_free()
 		#lose_screen = null
+	#_Node_2.remove_child(lose_screen_ui)
+	#$lose_screen.hide()
 
 	score = 0
 	#banana_score = 0 ## this is interesting, scores don't align
@@ -175,8 +178,6 @@ func end_game():
 	lose_screen_ui.show_results(score)
 	## this still aint working!!!!! 
 
-
-	
 	
 	await get_tree().create_timer(5).timeout
 	$GameOverMenu.get_node("endResult").text = "SCORE: " + str(score)
@@ -184,6 +185,7 @@ func end_game():
 	$GameOverMenu.show()
 	game_started = false
 	get_tree().paused = true
+	lose_screen_ui.queue_free()
 
 
 
@@ -229,11 +231,10 @@ func check_food_eaten():
 		scorelabel.text = "You've eaten your two serves of fruit!"
 	#if banana_score == 50:
 		#$HUD.get_node("scoreLabel").text = "You've eaten 50 bananas resulting which is dental x-ray dose of radiation!"
-#
-#
 
 func _on_game_over_menu_restart():
 	new_game()
 
 func _on_start_menu_new():
 	$StartMenu.hide()
+	

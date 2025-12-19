@@ -20,7 +20,7 @@ var fruit_scenes = [
 #var tex = fruit_instance.texture
 #var img = tex.get_image()
 #img.resize(50, 50) 
-#.texture = ImageTexture.create_from_image(img)
+#fruit.texture = ImageTexture.create_from_image(img)
 
 
 ## 1. need to randomise the types of fruits that go into the bowl 
@@ -42,10 +42,10 @@ func show_results(score: int):
 		var fruit = fruit_icon_scene.instantiate()
 		fruit_container.add_child(fruit)
 		var tex = fruit.texture
+		var img = tex.get_image()
+		img.resize(100,100)
 
 		# Random position inside bowl
 		var x = randf_range(20, fruit_container.size.x - 20)
 		var y = randf_range(20, fruit_container.size.y - 20)
 		fruit.position = Vector2(x, y)
-		var img = tex.get_image()
-		img.resize(50,50)

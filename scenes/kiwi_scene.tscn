@@ -3,4 +3,5 @@
 [ext_resource type="Texture2D" uid="uid://cxdxaj2ktsjmu" path="res://assets/kiwi.png" id="1_5l8um"]
 
 [node name="kiwi_scene" type="Sprite2D"]
+scale = Vector2(0.041, 0.041)
 texture = ExtResource("1_5l8um")

@@ -3,4 +3,5 @@
 [ext_resource type="Texture2D" uid="uid://brcmoi0v8qrp" path="res://assets/mango.png" id="1_lx0xs"]
 
 [node name="mango_scene" type="Sprite2D"]
+scale = Vector2(0.033, 0.033)
 texture = ExtResource("1_lx0xs")

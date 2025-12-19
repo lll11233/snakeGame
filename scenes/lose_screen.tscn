@@ -29,10 +29,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="FruitContainer" type="Control" parent="."]
 layout_mode = 3
-anchor_left = 0.302
-anchor_top = 0.474286
-anchor_right = 0.736
-anchor_bottom = 0.728571
+anchor_left = 0.309
+anchor_top = 0.353333
+anchor_right = 0.743
+anchor_bottom = 0.473333
+pivot_offset = Vector2(40, 0)
+size_flags_vertical = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="ScoreLabel" type="Label" parent="."]
