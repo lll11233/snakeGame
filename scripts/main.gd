@@ -68,7 +68,7 @@ func new_game():
 	get_tree().call_group("segments", "queue_free")
 	var GameOver = get_tree().get_root().get_node("_Node_2/GameOverMenu")
 	GameOver.hide()
-	var lose_screen = get_tree().get_root().get_node("_Node_2/lose_screen")
+	var lose_screen = get_tree().get_root().get_node("/root/_Node_2/lose_screen")
 	#lose_screen.hide()
 	lose_screen.queue_free()
 	#lose_screen = null

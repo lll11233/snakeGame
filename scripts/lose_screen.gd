@@ -41,9 +41,11 @@ func show_results(score: int):
 		var fruit_icon_scene = fruit_scenes[randi() % fruit_scenes.size()]
 		var fruit = fruit_icon_scene.instantiate()
 		fruit_container.add_child(fruit)
+		var tex = fruit.texture
 
 		# Random position inside bowl
 		var x = randf_range(20, fruit_container.size.x - 20)
 		var y = randf_range(20, fruit_container.size.y - 20)
 		fruit.position = Vector2(x, y)
-		fruit.resize(50,50)
+		var img = tex.get_image()
+		img.resize(50,50)
