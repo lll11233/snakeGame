@@ -179,7 +179,7 @@ func end_game():
 	## this still aint working!!!!! 
 
 	
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(3).timeout
 	$GameOverMenu.get_node("endResult").text = "SCORE: " + str(score)
 	#$GameOverMenu.get_node("bananaResult").text = "BANANA SCORE: " + str(banana_score)
 	$GameOverMenu.show()
