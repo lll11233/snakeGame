@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmbgvnjy6x2ol"]
+[gd_scene load_steps=9 format=3 uid="uid://cmbgvnjy6x2ol"]
 
 [ext_resource type="Script" uid="uid://dxukwvmpivy6q" path="res://scenes/fallling_objects.gd" id="1_atonc"]
 [ext_resource type="Texture2D" uid="uid://b2cicg4pqs5tu" path="res://assets/apple.png" id="1_k6rdh"]
+[ext_resource type="Script" uid="uid://dhvu5b7s7ab67" path="res://scenes/sprite_2d.gd" id="3_kwpbn"]
+[ext_resource type="Texture2D" uid="uid://b15th0wfah3f5" path="res://assets/banana.png" id="4_vmqfi"]
+[ext_resource type="Texture2D" uid="uid://c4ck22ewcn624" path="res://assets/cherry.png" id="5_7ij1x"]
+[ext_resource type="Texture2D" uid="uid://dmi5b3mgpqfyk" path="res://assets/grape.png" id="6_h7fvf"]
+[ext_resource type="Texture2D" uid="uid://cxdxaj2ktsjmu" path="res://assets/kiwi.png" id="7_nevlw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_atonc"]
 radius = 22.3607
@@ -15,3 +20,5 @@ debug_color = Color(0.0977077, 0.522952, 1, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_k6rdh")
+script = ExtResource("3_kwpbn")
+sprite_textures = Array[Texture2D]([ExtResource("1_k6rdh"), ExtResource("4_vmqfi"), ExtResource("5_7ij1x"), ExtResource("6_h7fvf"), ExtResource("7_nevlw")])

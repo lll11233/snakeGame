@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl80ldr3105oi"]
+[gd_scene load_steps=6 format=3 uid="uid://bl80ldr3105oi"]
 
 [ext_resource type="Script" uid="uid://bxfreupdgdbq3" path="res://scripts/lose_screen.gd" id="1_1n1m7"]
 [ext_resource type="Texture2D" uid="uid://bujwv4h5wekqd" path="res://assets/bowl_2.png" id="1_uglf1"]
 [ext_resource type="PackedScene" uid="uid://cmbgvnjy6x2ol" path="res://scenes/fallling_objects.tscn" id="3_73mov"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_uglf1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_73mov"]
+absorbent = true
 
 [node name="lose_screen" type="Node"]
 script = ExtResource("1_1n1m7")
@@ -16,16 +19,28 @@ anchor_bottom = 1.0
 texture = SubResource("CanvasTexture_uglf1")
 metadata/_edit_use_anchors_ = true
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(473, 505)
+scale = Vector2(2.512, 2.159)
+texture = ExtResource("1_uglf1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+visible = false
+position = Vector2(15.1274, 36.1278)
+scale = Vector2(0.398089, 0.463177)
+physics_material_override = SubResource("PhysicsMaterial_73mov")
+
 [node name="bowl" type="TextureRect" parent="."]
 anchors_preset = -1
 anchor_left = 0.31
 anchor_top = 0.423
 anchor_right = 0.754
 anchor_bottom = 0.681
-offset_left = -303.0
-offset_top = -443.15
-offset_right = -247.0
-offset_bottom = -214.05
+offset_left = -315.0
+offset_top = -439.15
+offset_right = -259.0
+offset_bottom = -210.05
 scale = Vector2(2, 2)
 texture = ExtResource("1_uglf1")
 metadata/_edit_use_anchors_ = true
@@ -33,10 +48,13 @@ metadata/_edit_use_anchors_ = true
 [node name="Area2D" type="Area2D" parent="bowl"]
 position = Vector2(254.5, 283.5)
 scale = Vector2(0.5, 0.5)
+disable_mode = 2
+collision_layer = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bowl/Area2D"]
 position = Vector2(0, 5)
 polygon = PackedVector2Array(229, -90, -195, -102, -175, -16, -107, 109, -57, 145, 105, 141, 152, 64, 228, -61)
+one_way_collision = true
 
 [node name="FruitContainer" type="Control" parent="."]
 layout_mode = 3
@@ -47,8 +65,6 @@ anchor_bottom = 0.473333
 pivot_offset = Vector2(40, 0)
 size_flags_vertical = 3
 metadata/_edit_use_anchors_ = true
-
-[node name="Area2D" parent="." instance=ExtResource("3_73mov")]
 
 [node name="ScoreLabel" type="Label" parent="."]
 anchors_preset = -1
@@ -62,3 +78,5 @@ theme_override_font_sizes/font_size = 60
 text = "Score: "
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" parent="." instance=ExtResource("3_73mov")]
