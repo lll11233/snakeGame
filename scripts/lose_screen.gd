@@ -4,17 +4,17 @@ extends Node
 @onready var fruit_container = $FruitContainer
 @onready var score_label = $ScoreLabel
 
-#var fruit_scenes = [
-	#preload("res://scenes/apple_scene.tscn"),
-	#preload("res://scenes/cherry_scene.tscn"),
-	#preload("res://scenes/orange_scene.tscn"),
-	#preload("res://scenes/watermelon_scene.tscn"),
-	#preload("res://scenes/banana_scene.tscn"),
-	#preload("res://scenes/kiwi_scene.tscn"),
-	#preload("res://scenes/grape_scene.tscn"),
-	#preload("res://scenes/strawberry_scene.tscn"),
-	#preload("res://scenes/mango_scene.tscn"),
-#]
+var fruit_scenes = [
+	preload("res://scenes/apple_scene.tscn"),
+	preload("res://scenes/cherry_scene.tscn"),
+	preload("res://scenes/orange_scene.tscn"),
+	preload("res://scenes/watermelon_scene.tscn"),
+	preload("res://scenes/banana_scene.tscn"),
+	preload("res://scenes/kiwi_scene.tscn"),
+	preload("res://scenes/grape_scene.tscn"),
+	preload("res://scenes/strawberry_scene.tscn"),
+	preload("res://scenes/mango_scene.tscn"),
+]
 #var FruitScene = fruit_scenes[randi() % fruit_scenes.size()]
 #var fruit_instance = FruitScene.instantiate()
 #var tex = fruit_instance.texture
@@ -25,41 +25,25 @@ extends Node
 
 ## 1. need to randomise the types of fruits that go into the bowl 
 ## 2. animate the bowl to look entertaining
+const fallingObjectsScene: PackedScene = preload("res://scenes/fallling_objects.tscn")
+
 
 
 
 var score = Main.score
 
-func _ready():
-	spawn_fruit(score)
+#func _ready():
+	#print(score)
+	#spawn_fruit(score)
+
+#func _process(float) -> void:
+	#spawn_fruit(score)
 
 
 
-func show_results(score: int):
-	print(score)
-	score_label.text = "Fruits collected: %d" % score
 
-	#for i in range(score):
-		##var fruit_icon_scene = fruit_scenes[randi() % fruit_scenes.size()]
-		##var fruit = fruit_icon_scene.instantiate()
-		##fruit_container.add_child(fruit)
-		##var tex = fruit.texture
-		##var img = tex.get_image()
-		##img.resize(100,100)
-#
-		## Random position inside bowl
-		#var x = randf_range(20, fruit_container.size.x - 20)
-		#var y = randf_range(20, fruit_container.size.y - 20)
-		##fruit.position = Vector2(x, y)
-		
-		
-		
-
-# Preload the scene to be efficient
-const fallingObjectsScene: PackedScene = preload("res://scenes/fallling_objects.tscn")
-
-func spawn_fruit(amount: int) -> void:
-	for i in range(amount):
+func spawn_fruit(score: int) -> void:
+	for i in range(score):
 		# 1. Instantiate a new instance of the scene
 		var new_object = fallingObjectsScene.instantiate()
 		
@@ -69,3 +53,22 @@ func spawn_fruit(amount: int) -> void:
 		
 		# 2. Add the new instance to the scene tree as a child of the current node
 		add_child(new_object)
+
+
+func show_results(score: int):
+	#print(score)
+	score_label.text = "Fruits collected: %d" % score
+
+	for i in range(score):
+		var fruit_icon_scene = fruit_scenes[randi() % fruit_scenes.size()]
+		var fruit = fruit_icon_scene.instantiate()
+		fruit_container.add_child(fruit)
+		var tex = fruit.texture
+		var img = tex.get_image()
+		img.resize(100,100)
+
+		# Random position inside bowl
+		var x = randf_range(20, fruit_container.size.x - 20)
+		var y = randf_range(20, fruit_container.size.y - 20)
+		fruit.position = Vector2(x, y)
+		

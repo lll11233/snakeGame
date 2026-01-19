@@ -176,7 +176,9 @@ func end_game():
 	print("Script on lose_screen_ui:", lose_screen_ui.get_script())
 
 	lose_screen_ui.show_results(score)
-	## this still aint working!!!!! 
+	lose_screen_ui.spawn_fruit(score)
+
+	
 
 	
 	await get_tree().create_timer(3).timeout

@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bl80ldr3105oi"]
+[gd_scene load_steps=5 format=3 uid="uid://bl80ldr3105oi"]
 
 [ext_resource type="Script" uid="uid://bxfreupdgdbq3" path="res://scripts/lose_screen.gd" id="1_1n1m7"]
 [ext_resource type="Texture2D" uid="uid://bujwv4h5wekqd" path="res://assets/bowl_2.png" id="1_uglf1"]
-[ext_resource type="PackedScene" uid="uid://cmbgvnjy6x2ol" path="res://scenes/fallling_objects.tscn" id="3_73mov"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_uglf1"]
 
@@ -78,5 +77,3 @@ theme_override_font_sizes/font_size = 60
 text = "Score: "
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="Area2D" parent="." instance=ExtResource("3_73mov")]
