@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://byasummwj41s5" path="res://scenes/start_menu.tscn" id="7_o6xl0"]
 [ext_resource type="AudioStream" uid="uid://osdte227s11l" path="res://assets/04_Fruit_Salad.wav" id="8_tipki"]
 [ext_resource type="AudioStream" uid="uid://c6qqwv851i6m7" path="res://assets/crunch.mp3" id="9_85g3d"]
-[ext_resource type="Script" uid="uid://bn3v7txbrfy8x" path="res://scenes/camera_2d.gd" id="10_choun"]
+[ext_resource type="Script" uid="uid://bn3v7txbrfy8x" path="res://scripts/camera_2d.gd" id="10_choun"]
 [ext_resource type="AudioStream" uid="uid://dwrkg0u3f2ls5" path="res://assets/gameOverSound.mp3" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://bl80ldr3105oi" path="res://scenes/lose_screen.tscn" id="12_eb6dy"]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cmbgvnjy6x2ol"]
 
-[ext_resource type="Script" uid="uid://dxukwvmpivy6q" path="res://scenes/fallling_objects.gd" id="1_atonc"]
+[ext_resource type="Script" uid="uid://dxukwvmpivy6q" path="res://scripts/fallling_objects.gd" id="1_atonc"]
 [ext_resource type="Texture2D" uid="uid://b2cicg4pqs5tu" path="res://assets/apple.png" id="1_k6rdh"]
-[ext_resource type="Script" uid="uid://dhvu5b7s7ab67" path="res://scenes/sprite_2d.gd" id="3_kwpbn"]
+[ext_resource type="Script" uid="uid://dhvu5b7s7ab67" path="res://scripts/sprite_2d.gd" id="3_kwpbn"]
 [ext_resource type="Texture2D" uid="uid://b15th0wfah3f5" path="res://assets/banana.png" id="4_vmqfi"]
 [ext_resource type="Texture2D" uid="uid://c4ck22ewcn624" path="res://assets/cherry.png" id="5_7ij1x"]
 [ext_resource type="Texture2D" uid="uid://dmi5b3mgpqfyk" path="res://assets/grape.png" id="6_h7fvf"]

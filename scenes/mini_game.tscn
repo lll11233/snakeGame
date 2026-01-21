@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://o4g6rc5v43r0"]
+
+[ext_resource type="Script" uid="uid://dji2as7c7phig" path="res://scripts/mini_game.gd" id="1_gn4em"]
+
+[node name="mini_game" type="Node"]
+script = ExtResource("1_gn4em")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = -1
+anchor_right = 0.985
+anchor_bottom = 0.990476
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(464, 12)

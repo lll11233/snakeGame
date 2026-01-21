@@ -176,19 +176,29 @@ func end_game():
 	print("Script on lose_screen_ui:", lose_screen_ui.get_script())
 
 	lose_screen_ui.show_results(score)
-	lose_screen_ui.spawn_fruit(score)
+	#lose_screen_ui.spawn_fruit(score)
+	await get_tree().create_timer(2).timeout
+	var mini_game_scene = preload("res://scenes/mini_game.tscn")
+	var mini_game_ui = mini_game_scene.instantiate()
+	get_tree().root.add_child(mini_game_ui)
+	print("Script on mini_game scene:", mini_game_ui.get_script())
+	lose_screen_ui.queue_free()
+	
+
+
+
 
 	
 
 	
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(score).timeout
+	mini_game_ui.queue_free()
+
 	$GameOverMenu.get_node("endResult").text = "SCORE: " + str(score)
 	#$GameOverMenu.get_node("bananaResult").text = "BANANA SCORE: " + str(banana_score)
 	$GameOverMenu.show()
 	game_started = false
 	get_tree().paused = true
-	lose_screen_ui.queue_free()
-
 
 
 
