@@ -1,12 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://d27a728gbnsba"]
+[gd_scene load_steps=4 format=3 uid="uid://d27a728gbnsba"]
 
 [ext_resource type="Script" uid="uid://d28kge4g2ws27" path="res://player.gd" id="1_ccfdg"]
 [ext_resource type="Texture2D" uid="uid://bujwv4h5wekqd" path="res://assets/bowl_2.png" id="2_idgsc"]
 
-[node name="basket" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idgsc"]
+size = Vector2(214, 141)
+
+[node name="player" type="CharacterBody2D"]
+collision_mask = 4
 script = ExtResource("1_ccfdg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(459, 943)
 texture = ExtResource("2_idgsc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(468, 985.5)
+shape = SubResource("RectangleShape2D_idgsc")

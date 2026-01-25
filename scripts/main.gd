@@ -191,7 +191,7 @@ func end_game():
 	
 
 	
-	await get_tree().create_timer(score).timeout
+	await get_tree().create_timer(10).timeout
 	mini_game_ui.queue_free()
 
 	$GameOverMenu.get_node("endResult").text = "SCORE: " + str(score)
@@ -223,6 +223,11 @@ func move_food():
 
 	regen_food = true
 
+func increase_score():
+	score += 1
+	var scorelabel = get_tree().get_root().get_node("_Node_2/HUD/scoreLabel")
+	scorelabel.text = "SCORE:  " + str(score)
+
 
 
 
@@ -231,9 +236,7 @@ func check_food_eaten():
 		#banana_score += 1 ## banana score still doenst work
 	if snake_data[0] == food_pos:
 		$soundEffect.play()
-		score += 1
-		var scorelabel = get_tree().get_root().get_node("_Node_2/HUD/scoreLabel")
-		scorelabel.text = "SCORE:  " + str(score)
+		increase_score()
 		add_segment(old_data[-1])
 		move_food()
 	#if snake_data[0] == food_pos and FruitScene[4]:

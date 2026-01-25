@@ -1,17 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://o4g6rc5v43r0"]
+[gd_scene load_steps=3 format=3 uid="uid://o4g6rc5v43r0"]
 
 [ext_resource type="Script" uid="uid://dji2as7c7phig" path="res://scripts/mini_game.gd" id="1_gn4em"]
+[ext_resource type="PackedScene" uid="uid://d27a728gbnsba" path="res://scenes/player.tscn" id="2_nrtvx"]
 
 [node name="mini_game" type="Node"]
 script = ExtResource("1_gn4em")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = -1
-anchor_right = 0.985
-anchor_bottom = 0.990476
+anchor_left = -0.025
+anchor_right = 1.01
+anchor_bottom = 0.985714
+offset_left = 25.0
+offset_top = 20.0
+offset_right = 25.0
+offset_bottom = 20.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(464, 12)
+
+[node name="player" parent="." instance=ExtResource("2_nrtvx")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

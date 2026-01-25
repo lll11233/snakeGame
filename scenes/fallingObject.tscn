@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://v6wc2totgcfx"]
+
+[ext_resource type="Script" uid="uid://b74n67sngs0ny" path="res://scripts/fallingObject.gd" id="1_du1qa"]
+[ext_resource type="Texture2D" uid="uid://b2cicg4pqs5tu" path="res://assets/apple.png" id="2_05y2y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_baflr"]
+radius = 26.0
+
+[node name="fallingObject" type="Area2D"]
+script = ExtResource("1_du1qa")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_05y2y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(26, 24)
+shape = SubResource("CircleShape2D_baflr")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

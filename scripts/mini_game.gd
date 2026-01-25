@@ -1,6 +1,6 @@
 extends Node
 
-var collectiblesScene = preload("res://scenes/collectibles.tscn")
+var falling_object_scene = preload("res://scenes/fallingObject.tscn")
 
 var fruit_scenes = [
 	preload("res://scenes/apple_scene.tscn"),
@@ -28,18 +28,29 @@ var fruit_scenes = [
 var score = Main.score
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Timer.timeout.connect(_on_timer_timeout) # Connect the timer signal
+	#$Timer.timeout.connect(_on_timer_timeout) # Connect the timer signal
 	$Timer.start() # Start the timer
 	randomize() # Initialize random number generator
 
 
 func _on_timer_timeout():
-	var new_object = collectiblesScene.instantiate()
+	var new_object = falling_object_scene.instantiate()
 	add_child(new_object)
-	new_object.position.x = randf_range(50,200)
+	new_object.position.x = randf_range(0,1000)
 	new_object.position.y = $Marker2D.position.y
-	new_object.connect("collected", _on_object_collected)
+	#new_object.connect("collected", _on_object_collected)
 	
-func _on_object_collected():
-	score += 1
-	print("The Score is now ", score)
+#func _on_object_collected():
+	#score = score + 1
+	#print("The Score is now ", score)
+
+
+
+
+
+#func _on_timer_timeout():
+	#var new_object = falling_object_scene.instantiate()
+	## Randomize starting position (x-coordinate)
+	#new_object.position.x = randf_range(0, screen_size.x)
+	#new_object.position.y = 0 # Start at the top
+	#add_child(new_object)
