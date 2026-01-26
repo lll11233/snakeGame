@@ -61,7 +61,12 @@ func _ready() -> void:
 	start.show()
 	var lose_screen_scene = get_tree().get_root().get_node("_Node_2/lose_screen")
 	lose_screen_scene.queue_free()
+	var GameOver = get_tree().get_root().get_node("_Node_2/GameOverMenu")
+	GameOver.queue_free()
+	var miniGame = get_tree().get_root().get_node("_Node_2/mini_game")
+	miniGame.queue_free()
 	new_game() 
+
 	
 
 
@@ -69,8 +74,10 @@ func _ready() -> void:
 func new_game():
 	get_tree().paused = false
 	get_tree().call_group("segments", "queue_free")
-	var GameOver = get_tree().get_root().get_node("_Node_2/GameOverMenu")
-	GameOver.hide()
+	#var GameOver = get_tree().get_root().get_node("_Node_2/GameOverMenu")
+	#GameOver.hide()
+	#var miniGame = get_tree().ger_roor().get_node("_Node_2/mini_game")
+	#miniGame.hide()
 	#var lose_screen_scene = get_tree().get_root().get_node("/_Node_2/lose_screen")
 	#lose_screen_scene.queue_free()
 	###lose_screen.hide()
@@ -160,6 +167,16 @@ func check_out_of_bounds():
 	if snake_data[0].x < 0 or snake_data[0].x > cells - 1 or snake_data[0].y < 0 or snake_data[0].y > cells - 1:
 		end_game()
 
+func increase_score():
+	score += 1
+	var scorelabel = get_tree().get_root().get_node("_Node_2/HUD/scoreLabel")
+	scorelabel.text = "SCORE:  " + str(score)
+	print(score)
+
+
+
+
+
 func check_self_eaten():
 	for i in range(1, len(snake_data)):
 		if snake_data[0] == snake_data[1]:
@@ -182,20 +199,32 @@ func end_game():
 	var mini_game_scene = preload("res://scenes/mini_game.tscn")
 	var mini_game_ui = mini_game_scene.instantiate()
 	lose_screen_ui.queue_free()
+	
 	get_tree().root.add_child(mini_game_ui)
-	await get_tree().create_timer(5).timeout
-	#get_tree().paused = true
+	await get_tree().create_timer(3).timeout
 	mini_game_ui.get_node("message").hide()
-	mini_game_ui.get_node("Timer").start()
-
-
 	print("Script on mini_game scene:", mini_game_ui.get_script())
-	await get_tree().create_timer(5 + score).timeout
-	mini_game_ui.queue_free()
+	
+	var time_left = 5 + score
+	mini_game_ui.get_node("Timer").start(time_left)
+	#await get_child().Timer(time_left).timeout
+	#mini_game_ui._on_timer_timeout()
+	mini_game_ui.get_node("Timer/countdown").text = str(time_left)
+	#await get_tree().create_timer(time_left).timeout
+	
 
-	$GameOverMenu.get_node("endResult").text = "SCORE: " + str(score)
+	print(score)
+	
+	#mini_game_ui.timer.timeout.connect() # Connect the timer signal
+	var game_over_scene = preload("res://scenes/game_over_menu.tscn")
+	var game_over_ui = game_over_scene.instantiate()
+	get_tree().root.add_child(game_over_ui)
+	print("Script on game_over_ui:", game_over_ui.get_script())
+	game_over_ui.get_node("endResult").text = "SCORE: " + str(score)
+	
 	#$GameOverMenu.get_node("bananaResult").text = "BANANA SCORE: " + str(banana_score)
-	$GameOverMenu.show()
+	await get_tree().create_timer(3).timeout
+	
 	game_started = false
 	get_tree().paused = true
 
@@ -222,13 +251,6 @@ func move_food():
 
 	regen_food = true
 
-func increase_score():
-	score += 1
-	var scorelabel = get_tree().get_root().get_node("_Node_2/HUD/scoreLabel")
-	scorelabel.text = "SCORE:  " + str(score)
-	#var GameOver = get_tree().get_root().get_node("GameOverMenu")
-	#GameOver.get_node("endResult").text = "SCORE: " + str(Main.score)
-
 
 
 
@@ -250,6 +272,11 @@ func check_food_eaten():
 		#$HUD.get_node("scoreLabel").text = "You've eaten 50 bananas resulting which is dental x-ray dose of radiation!"
 
 func _on_game_over_menu_restart():
+	score = 0
+	var mini_game_scene = preload("res://scenes/mini_game.tscn")
+	var mini_game_ui = mini_game_scene.instantiate()
+	mini_game_ui.queue_free()
+
 	new_game()
 
 func _on_start_menu_new():

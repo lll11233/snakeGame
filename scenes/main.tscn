@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://r8dbyc1eieg7"]
+[gd_scene load_steps=14 format=3 uid="uid://r8dbyc1eieg7"]
 
 [ext_resource type="Script" uid="uid://2hvdxga2bokm" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dbv2isccs4way" path="res://scenes/snakeScene.tscn" id="2_h2yge"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bn3v7txbrfy8x" path="res://scripts/camera_2d.gd" id="10_choun"]
 [ext_resource type="AudioStream" uid="uid://dwrkg0u3f2ls5" path="res://assets/gameOverSound.mp3" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://bl80ldr3105oi" path="res://scenes/lose_screen.tscn" id="12_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://o4g6rc5v43r0" path="res://scenes/mini_game.tscn" id="13_trceg"]
 
 [node name="_Node_2" type="Node"]
 script = ExtResource("1_ig7tw")
@@ -61,6 +62,8 @@ script = ExtResource("10_choun")
 [node name="StartMenu" parent="." instance=ExtResource("7_o6xl0")]
 
 [node name="lose_screen" parent="." instance=ExtResource("12_eb6dy")]
+
+[node name="mini_game" parent="." instance=ExtResource("13_trceg")]
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="restart" from="GameOverMenu" to="." method="_on_game_over_menu_restart"]
