@@ -24,12 +24,24 @@ func _process(delta: float) -> void:
 		#queue_free()
 		#emit_signal("collected")
 		#score = score + 1
-		#
+		
 
 
-func _on_area_entered(area: Area2D) -> void:
-	if area.name == "player":
-		queue_free()
+#func _on_area_entered(area) -> void:
+	#if area.name == "player":
+		#print("Player touched object")
+		#queue_free()
 		#emit_signal("collected")
-		#score = score + 1
-		get_tree().get_root().get_node("Main").increase_score()
+		##score = score + 1
+		#get_tree().get_root().get_node("main").increase_score()
+
+
+
+	
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == "player":
+		print("Player touched object!")
+		queue_free()
+		get_tree().get_root().get_node("/root/Main").increase_score()
+		emit_signal("collected")

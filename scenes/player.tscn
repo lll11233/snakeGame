@@ -7,13 +7,14 @@
 size = Vector2(214, 141)
 
 [node name="player" type="CharacterBody2D"]
-collision_mask = 4
+slide_on_ceiling = false
 script = ExtResource("1_ccfdg")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="player" type="Sprite2D" parent="."]
 position = Vector2(459, 943)
 texture = ExtResource("2_idgsc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(468, 985.5)
 shape = SubResource("RectangleShape2D_idgsc")
+one_way_collision_margin = 27.5

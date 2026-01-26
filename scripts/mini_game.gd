@@ -38,11 +38,11 @@ func _on_timer_timeout():
 	add_child(new_object)
 	new_object.position.x = randf_range(0,1000)
 	new_object.position.y = $Marker2D.position.y
-	#new_object.connect("collected", _on_object_collected)
+	#new_object.connect("collected", _on_object_collected())
 	
-#func _on_object_collected():
-	#score = score + 1
-	#print("The Score is now ", score)
+func _on_object_collected():
+	score = score + 1
+	print("The Score is now ", score)
 
 
 
