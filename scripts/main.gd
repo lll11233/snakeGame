@@ -12,6 +12,8 @@ extends Node
 
 #game 
 var score: int
+var additional_score: int 
+
 var game_started: bool = false
 
 #food variables
@@ -88,6 +90,7 @@ func new_game():
 	#$lose_screen.hide()
 
 	score = 0
+	additional_score = 0
 	#banana_score = 0 ## this is interesting, scores don't align
 	var scorelabel = get_tree().get_root().get_node("_Node_2/HUD/scoreLabel")
 	scorelabel.text = "SCORE:  " + str(score)
@@ -173,7 +176,16 @@ func increase_score():
 	scorelabel.text = "SCORE:  " + str(score)
 	print(score)
 
+func increasing_additional_score():
+	additional_score = additional_score + 1
+	print(additional_score)
+	#var gameOverLabel = get_tree().get_root().get_node("endLabel")
+	#gameOverLabel.text = "FINAL SCORE:" + str(additional_score + score)
+	var game_over_scene = preload("res://scenes/game_over_menu.tscn")
+	var gameoverui = game_over_scene.instantiate()
+	gameoverui.get_node("endResult").text = "FINAL SCORE: " + str(additional_score)
 
+	
 
 
 
@@ -204,23 +216,29 @@ func end_game():
 	await get_tree().create_timer(3).timeout
 	mini_game_ui.get_node("message").hide()
 	print("Script on mini_game scene:", mini_game_ui.get_script())
-	
 	var time_left = 5 + score
-	mini_game_ui.get_node("Timer").start(time_left)
+	#mini_game_ui.timer.start(time_left)
+	await get_tree().create_timer(time_left).timeout
+	#mini_game_ui.timer.start()
+	
+	
+	#mini_game_ui.get_node("Timer").start(time_left)
 	#await get_child().Timer(time_left).timeout
 	#mini_game_ui._on_timer_timeout()
-	mini_game_ui.get_node("Timer/countdown").text = str(time_left)
+	#mini_game_ui.get_node("Timer/countdown").text = str(time_left)
 	#await get_tree().create_timer(time_left).timeout
 	
 
 	print(score)
+	
 	
 	#mini_game_ui.timer.timeout.connect() # Connect the timer signal
 	var game_over_scene = preload("res://scenes/game_over_menu.tscn")
 	var game_over_ui = game_over_scene.instantiate()
 	get_tree().root.add_child(game_over_ui)
 	print("Script on game_over_ui:", game_over_ui.get_script())
-	game_over_ui.get_node("endResult").text = "SCORE: " + str(score)
+	#game_over_ui.get_node("endResult").text = "FINAL SCORE: " + str(additional_score+score)
+	mini_game_ui.queue_free()
 	
 	#$GameOverMenu.get_node("bananaResult").text = "BANANA SCORE: " + str(banana_score)
 	await get_tree().create_timer(3).timeout
@@ -273,10 +291,6 @@ func check_food_eaten():
 
 func _on_game_over_menu_restart():
 	score = 0
-	var mini_game_scene = preload("res://scenes/mini_game.tscn")
-	var mini_game_ui = mini_game_scene.instantiate()
-	mini_game_ui.queue_free()
-
 	new_game()
 
 func _on_start_menu_new():

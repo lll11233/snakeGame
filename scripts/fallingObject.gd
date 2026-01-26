@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 	if position.y > 1000:
 		queue_free()
 		
+
 #func _on_area_entered(other_area):
 	#if other_area.is_in_group("basket"):
 		#emit_signal("collected")
@@ -36,8 +37,12 @@ func _process(delta: float) -> void:
 		#get_tree().get_root().get_node("main").increase_score()
 
 
+
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		print("Player touched object!")
+		Main.increasing_additional_score()
+
 		queue_free()
-		get_tree().get_root().get_node("/root/Main").increase_score()
+		
+		

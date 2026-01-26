@@ -41,14 +41,13 @@ var time_left = score + 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Main.score
 	randomize() # Initialize random number generator
-	timer.wait_time
+	timer.start()
 
 
 
 func _on_timer_timeout():
-	var time_left = score + 5
+	var _time_left = score + 5
 	var new_object = falling_object_scene.instantiate()
 	add_child(new_object)
 	new_object.position.x = randf_range(0,1000)

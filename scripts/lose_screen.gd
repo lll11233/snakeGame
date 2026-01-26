@@ -30,7 +30,7 @@ var fruit_scenes = [
 
 
 
-var score = Main.score
+#var score = Main.score
 
 #func _ready():
 	#print(score)
