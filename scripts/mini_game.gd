@@ -29,7 +29,6 @@ var score = Main.score
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#$Timer.timeout.connect(_on_timer_timeout) # Connect the timer signal
-	$Timer.start() # Start the timer
 	randomize() # Initialize random number generator
 
 
@@ -38,14 +37,10 @@ func _on_timer_timeout():
 	add_child(new_object)
 	new_object.position.x = randf_range(0,1000)
 	new_object.position.y = $Marker2D.position.y
-	#new_object.connect("collected", _on_object_collected())
+		
+#func _on_object_collected():
+	#print("The Score is now ", score)
 	
-func _on_object_collected():
-	score = score + 1
-	print("The Score is now ", score)
-
-
-
 
 
 #func _on_timer_timeout():
@@ -54,3 +49,7 @@ func _on_object_collected():
 	#new_object.position.x = randf_range(0, screen_size.x)
 	#new_object.position.y = 0 # Start at the top
 	#add_child(new_object)
+
+
+#func _on_message_visibility_changed() -> void:
+	#pass # Replace with function body.

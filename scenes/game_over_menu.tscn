@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b14cswtejdej2"]
+[gd_scene load_steps=14 format=3 uid="uid://b14cswtejdej2"]
 
 [ext_resource type="Script" uid="uid://db6wv4l6pk6se" path="res://scripts/game_over_menu.gd" id="1_6ebp1"]
+[ext_resource type="Texture2D" uid="uid://ctv4kl372qwe4" path="res://assets/trophy_spriteSheet.png" id="2_cwb3k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg6a4"]
 bg_color = Color(0.109567, 0.265346, 0.537518, 1)
@@ -11,15 +12,79 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="Theme" id="Theme_14ib6"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccgoi"]
+atlas = ExtResource("2_cwb3k")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81acl"]
+atlas = ExtResource("2_cwb3k")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u104"]
+atlas = ExtResource("2_cwb3k")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvr4g"]
+atlas = ExtResource("2_cwb3k")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csn76"]
+atlas = ExtResource("2_cwb3k")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8pbw"]
+atlas = ExtResource("2_cwb3k")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nl4x"]
+atlas = ExtResource("2_cwb3k")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdd2s"]
+atlas = ExtResource("2_cwb3k")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bqmx0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccgoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81acl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u104")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvr4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_csn76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8pbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nl4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdd2s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
 [node name="gameOverMenu" type="CanvasLayer"]
 script = ExtResource("1_6ebp1")
 
 [node name="gameOverPanel" type="Panel" parent="."]
 anchors_preset = -1
 anchor_left = 0.302
-anchor_top = 0.243714
+anchor_top = 0.24381
 anchor_right = 0.702
-anchor_bottom = 0.548476
+anchor_bottom = 0.598095
 theme_override_styles/panel = SubResource("StyleBoxFlat_tg6a4")
 metadata/_edit_use_anchors_ = true
 
@@ -37,10 +102,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="restartButton" type="Button" parent="."]
 anchors_preset = -1
-anchor_left = 0.344
-anchor_top = 0.45619
-anchor_right = 0.662
-anchor_bottom = 0.501904
+anchor_left = 0.35
+anchor_top = 0.519048
+anchor_right = 0.668
+anchor_bottom = 0.564762
 theme = SubResource("Theme_14ib6")
 theme_override_font_sizes/font_size = 20
 text = "Play Again"
@@ -48,12 +113,19 @@ metadata/_edit_use_anchors_ = true
 
 [node name="endResult" type="Label" parent="."]
 anchors_preset = -1
-anchor_left = 0.337
-anchor_top = 0.382857
-anchor_right = 0.697
-anchor_bottom = 0.437143
+anchor_left = 0.334
+anchor_top = 0.458095
+anchor_right = 0.694
+anchor_bottom = 0.512381
 theme_override_font_sizes/font_size = 28
-text = "Score: "
+text = "Final Score: "
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(508, 423)
+scale = Vector2(3.40625, 3.21875)
+sprite_frames = SubResource("SpriteFrames_bqmx0")
+frame_progress = 0.969032
 
 [connection signal="pressed" from="restartButton" to="." method="_on_restart_button_pressed"]

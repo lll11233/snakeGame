@@ -9,6 +9,7 @@ extends Node
 
 
 
+
 #game 
 var score: int
 var game_started: bool = false
@@ -180,20 +181,17 @@ func end_game():
 	await get_tree().create_timer(2).timeout
 	var mini_game_scene = preload("res://scenes/mini_game.tscn")
 	var mini_game_ui = mini_game_scene.instantiate()
-	get_tree().root.add_child(mini_game_ui)
-	print("Script on mini_game scene:", mini_game_ui.get_script())
 	lose_screen_ui.queue_free()
-	
+	get_tree().root.add_child(mini_game_ui)
+	await get_tree().create_timer(5).timeout
+	#get_tree().paused = true
+	mini_game_ui.get_node("message").hide()
+	mini_game_ui.get_node("Timer").start()
 
 
-
-
-	
-
-	
-	await get_tree().create_timer(score).timeout
+	print("Script on mini_game scene:", mini_game_ui.get_script())
+	await get_tree().create_timer(5 + score).timeout
 	mini_game_ui.queue_free()
-	print(score)
 
 	$GameOverMenu.get_node("endResult").text = "SCORE: " + str(score)
 	#$GameOverMenu.get_node("bananaResult").text = "BANANA SCORE: " + str(banana_score)
@@ -228,6 +226,9 @@ func increase_score():
 	score += 1
 	var scorelabel = get_tree().get_root().get_node("_Node_2/HUD/scoreLabel")
 	scorelabel.text = "SCORE:  " + str(score)
+	#var GameOver = get_tree().get_root().get_node("GameOverMenu")
+	#GameOver.get_node("endResult").text = "SCORE: " + str(Main.score)
+
 
 
 
