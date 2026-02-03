@@ -7,6 +7,7 @@ extends Node
 #@export var lose_screen: PackedScene
 @export var HUD: PackedScene
 
+@export var time_left : int = 5 + score
 
 
 
@@ -183,7 +184,8 @@ func increasing_additional_score():
 	#gameOverLabel.text = "FINAL SCORE:" + str(additional_score + score)
 	var game_over_scene = preload("res://scenes/game_over_menu.tscn")
 	var gameoverui = game_over_scene.instantiate()
-	gameoverui.get_node("endResult").text = "FINAL SCORE: " + str(additional_score)
+	var Final_score = additional_score + score
+	gameoverui.get_node("endResult").text = "FINAL SCORE: " + str(Final_score)
 
 	
 
@@ -216,9 +218,10 @@ func end_game():
 	await get_tree().create_timer(3).timeout
 	mini_game_ui.get_node("message").hide()
 	print("Script on mini_game scene:", mini_game_ui.get_script())
-	var time_left = 5 + score
+	#var time_left = 5 + score
 	#mini_game_ui.timer.start(time_left)
 	await get_tree().create_timer(time_left).timeout
+	
 	#mini_game_ui.timer.start()
 	
 	
@@ -236,16 +239,16 @@ func end_game():
 	var game_over_scene = preload("res://scenes/game_over_menu.tscn")
 	var game_over_ui = game_over_scene.instantiate()
 	get_tree().root.add_child(game_over_ui)
+	game_over_ui.get_node("endResult").text = "FINAL SCORE: " + str(additional_score + score)
 	print("Script on game_over_ui:", game_over_ui.get_script())
-	#game_over_ui.get_node("endResult").text = "FINAL SCORE: " + str(additional_score+score)
-	mini_game_ui.queue_free()
+	#game_over_ui.get_node("endResult").text = "FINAL SCORE: " + str(additional_score+score)	
 	
 	#$GameOverMenu.get_node("bananaResult").text = "BANANA SCORE: " + str(banana_score)
-	await get_tree().create_timer(3).timeout
-	
+	await get_tree().create_timer(1).timeout
+	$GameOverMenu/restartButton.pressed(_on_game_over_menu_restart())
 	game_started = false
 	get_tree().paused = true
-
+	mini_game_ui.queue_free()
 
 
 func move_food():

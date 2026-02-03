@@ -4,6 +4,11 @@ extends Node
 @onready var timer = $Timer
 @onready var label = $Timer/countdown
 @export var main: PackedScene
+var score = Main.score
+
+var time_left = 5 + score
+
+
 
 var falling_object_scene = preload("res://scenes/fallingObject.tscn")
 
@@ -19,7 +24,6 @@ var fruit_scenes = [
 	preload("res://scenes/mango_scene.tscn"),
 ]
 
-var score = Main.score
 
 
 
@@ -36,7 +40,6 @@ var score = Main.score
 	#img.resize(200,200)
 
 
-var time_left = score + 5
 
 
 # Called when the node enters the scene tree for the first time.
@@ -47,7 +50,6 @@ func _ready() -> void:
 
 
 func _on_timer_timeout():
-	var _time_left = score + 5
 	var new_object = falling_object_scene.instantiate()
 	add_child(new_object)
 	new_object.position.x = randf_range(0,1000)
