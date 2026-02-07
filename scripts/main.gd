@@ -9,8 +9,6 @@ extends Node
 
 @export var time_left : int = 5 + score
 
-
-
 #game 
 var score: int
 var additional_score: int 
@@ -69,26 +67,23 @@ func _ready() -> void:
 	var miniGame = get_tree().get_root().get_node("_Node_2/mini_game")
 	miniGame.queue_free()
 	new_game() 
+	#$GameOverMenu/restartButton.pressed.connect(on)
 
-	
+
 
 
 
 func new_game():
+	var start = get_tree().get_root().get_node("_Node_2/StartMenu")
+	start.show()
 	get_tree().paused = false
 	get_tree().call_group("segments", "queue_free")
-	#var GameOver = get_tree().get_root().get_node("_Node_2/GameOverMenu")
-	#GameOver.hide()
-	#var miniGame = get_tree().ger_roor().get_node("_Node_2/mini_game")
-	#miniGame.hide()
+	#var miniGame = get_tree().get_root().get_node("/_Node_2/mini_game")
+	#miniGame.queue_free()
 	#var lose_screen_scene = get_tree().get_root().get_node("/_Node_2/lose_screen")
-	#lose_screen_scene.queue_free()
-	###lose_screen.hide()
-	#if lose_screen.show():
-		#lose_screen.queue_free()
-		#lose_screen = null
-	#_Node_2.remove_child(lose_screen_ui)
-	#$lose_screen.hide()
+	#if lose_screen_scene.queue():
+		#lose_screen_scene.queue_free()
+		#lose_screen_scene = null
 
 	score = 0
 	additional_score = 0
@@ -151,7 +146,8 @@ func start_game():
 	moveTimer.start()
 	
 			 
-
+func _on_start_menu_new():
+	$StartMenu.hide()
 
 func _on_move_timer_timeout() -> void:
 	#allow snake movement
@@ -179,16 +175,20 @@ func increase_score():
 
 func increasing_additional_score():
 	additional_score = additional_score + 1
-	print(additional_score)
+	#print(additional_score)
+	var Final_score = additional_score + score
+	print(Final_score)
 	#var gameOverLabel = get_tree().get_root().get_node("endLabel")
 	#gameOverLabel.text = "FINAL SCORE:" + str(additional_score + score)
 	var game_over_scene = preload("res://scenes/game_over_menu.tscn")
 	var gameoverui = game_over_scene.instantiate()
-	var Final_score = additional_score + score
 	gameoverui.get_node("endResult").text = "FINAL SCORE: " + str(Final_score)
 
 	
-
+#func _on_game_over_menu_restart():
+	#print ("we got up to here - in the main file code")
+	#score = 0
+	#new_game()
 
 
 func check_self_eaten():
@@ -244,10 +244,12 @@ func end_game():
 	#game_over_ui.get_node("endResult").text = "FINAL SCORE: " + str(additional_score+score)	
 	
 	#$GameOverMenu.get_node("bananaResult").text = "BANANA SCORE: " + str(banana_score)
-	await get_tree().create_timer(1).timeout
-	$GameOverMenu/restartButton.pressed(_on_game_over_menu_restart())
+	#await get_tree().create_timer(5).timeout
+	
+
+	
+	
 	game_started = false
-	get_tree().paused = true
 	mini_game_ui.queue_free()
 
 
@@ -291,11 +293,16 @@ func check_food_eaten():
 		scorelabel.text = "You've eaten your two serves of fruit!"
 	#if banana_score == 50:
 		#$HUD.get_node("scoreLabel").text = "You've eaten 50 bananas resulting which is dental x-ray dose of radiation!"
+#
+#func _on_game_over_menu_restart():
+	#print ("we got up to here - in the main file code")
+	#score = 0
+	#new_game()
+	
+	
+	
+	
+	
 
-func _on_game_over_menu_restart():
-	score = 0
-	new_game()
 
-func _on_start_menu_new():
-	$StartMenu.hide()
 	
